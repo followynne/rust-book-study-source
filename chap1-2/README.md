@@ -59,7 +59,18 @@ let mut myString = String::new();
 `&guess != &mut guess`: the first is a var by reference, the 2nd a mutable var by reference.
 
 read_line returns a Result value.  
-Result is an enumeration (a type with variants) and the purpose is to encode error-handling info. Result's variants are Ok (inside has the value) | Err (info on why it failed)
+**Result** is an enumeration (a type with variants) and the purpose is to encode error-handling info. Result's variants are Ok (inside has the value) | Err (info on why it failed)  
+methods:
 
-On Result, methods are defined. `.expect(...)` either returns the Ok output or it crashes the app with a msg.
+- `.expect(...)` either returns the Ok output or it crashes the app with a msg.
 
+`println!("something {var} {}", 2nd)`: fn to print out a string.  
+Curly brackets with variable inside == prints the variable content; 
+empty brackets == expects an expression per each empty brackets couple as arguments of the fn.
+
+### comparisons & **match** expression
+
+std::cmp::Ordering => enum with variants Less | Greater | Equal related to values comparison  
+`.cmp(&some_value)`: compares two values, can be called on anything comparable; takes a ref parameter and returns one of the values of ::Ordering.
+
+a match expression is made up of arms (a pattern to match against and the code to run if match)
