@@ -1,3 +1,4 @@
+<!-- hello_world, hello_cargo, guessing_game -->
 ## Some basics
 
 Rust extension: `.rs`; indentation is made by 4 spaces

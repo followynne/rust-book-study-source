@@ -3,4 +3,5 @@
 members = [
     "projects/guessing_game",
     "projects/hello_cargo",
+    "projects/variables",
 ]
