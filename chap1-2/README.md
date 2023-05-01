@@ -26,21 +26,23 @@ Rust’s build system and package manager: `cargo --version`
 cargo new <prj_name> // creates new prj using cargo
 // build the prj into target/
 cargo build 
-    :args [--release] // release target
+    :args
+        [--release] // release target
+        [-p, --package] // choose package from workspace setup  
 cargo run // build and run
 cargo check // checks that the code compiles
 ```
 
 Cargo configuration format is in TOML:
 
-- [package]: package configuration (required are pkg name, pkg version, Rust edition)
+- [package]: package configuration (required are pkg: **name** - **version**, **Rust edition**)
 - [dependencies]: list of pkg dependencies (known as _crates_ in Rust)
 
 It expects source code under src, keeping the root free for configs and not-code files.
 
 ## Some basics 2
 
-To define variables, the keyword is **let**.
+To define variables, the keyword is **let**.  
 Variables are immutable by default; to make one mutable, it must be declared with **mut**
 
 ```rust
@@ -49,7 +51,9 @@ let mut myVar = 5;
 let mut myString = String::new();
 ```
 
-:: syntax indicates an associated function => _An associated function is a function that’s implemented on a type_
+**::** syntax indicates an associated function:
+
+> An **associated function** is a function that’s implemented on a type
 
 `.read_line(&mut guess)` calls a fn, passing a parameter. This parameter is specified as:
 
@@ -59,6 +63,7 @@ let mut myString = String::new();
 `&guess != &mut guess`: the first is a var by reference, the 2nd a mutable var by reference.
 
 read_line returns a Result value.  
+
 **Result** is an enumeration (a type with variants) and the purpose is to encode error-handling info. Result's variants are Ok (inside has the value) | Err (info on why it failed)  
 methods:
 
@@ -70,7 +75,7 @@ empty brackets == expects an expression per each empty brackets couple as argume
 
 ### comparisons & **match** expression
 
-std::cmp::Ordering => enum with variants Less | Greater | Equal related to values comparison  
+std::cmp::Ordering => enum with variants **Less | Greater | Equal** related to values comparison  
 `.cmp(&some_value)`: compares two values, can be called on anything comparable; takes a ref parameter and returns one of the values of ::Ordering.
 
-a match expression is made up of arms (a pattern to match against and the code to run if match)
+a match expression is made up of **arms** (a pattern to match against and the code to run if match)
