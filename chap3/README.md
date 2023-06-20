@@ -40,3 +40,34 @@ const MY_VALUE: u32 = 5 * 40;
 ```
 
 ### Data Types
+
+Rust is a statically typed language == means that it must know the types of all variables at compile time.
+
+There are 2 subsets:
+
+- *Scalar types*, they represent a single value.
+    - integers: number without a fractional component. In the type it's specified the size ({x}-bit) and if it is signed/unsigned (_i vs u_), a.k.a. if it can be negative.
+    example: i32, i64, u8...
+    default is i32
+    - floating-points: number with decimal points. There's f32 and f64, with the latter the more precise one.
+    - boolean: one byte in size
+    - character type: specified with single quotes, 4 bytes in size, represents an Unicode Scalar Value.
+- *Compound types*, they group multiple values in one variable.
+    - tuple: declared by writing comma-separated values of different types inside parenthesis.
+    example: `let tup: (i32, f64, u8) = (500, 6.4, 1);`
+    the values can be accessed or by variable deconstruction [`let (x,y) = my_tuple;`] or by using the value index [my_tuple.0];
+    - array: single chunk of memory of a known, fixed size that can be allocated on the stack; they have fixed length and all values must share the same type. Arrays are useful to store data on the stack instead of the heap and when the num of items of the collection is fixed.
+    To specify the array type, you set the items type and the number of items: `let a: [i32; 5] = [1, 2, 3, 4, 5];`
+
+> what happens on an integer overflow? The variable can't hold the provided value and the program panic.
+>
+> In --release mode, instead of panicking, the program performs a _two complement wrapping_ (the type wrap around on its maximum values, ex u8 => 255 max, 256 would cause a panic => type wraps and wraps 256 as value 0), which ends with the variable assigned to an unexpected value.
+>
+> This overflow can be handled in specific ways
+>
+> - wrap with wrapping_* methods
+> - return None if overflow, using checked_* methods
+> - return value + boolean that tells about happened overflow, with overflowing_* methods
+> - saturate with saturate_* methods
+
+> what happens on invalid array element access? The program will panic, to prevent it from accessing invalid memory.
