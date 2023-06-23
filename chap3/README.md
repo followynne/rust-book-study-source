@@ -59,7 +59,7 @@ There are 2 subsets:
     - array: single chunk of memory of a known, fixed size that can be allocated on the stack; they have fixed length and all values must share the same type. Arrays are useful to store data on the stack instead of the heap and when the num of items of the collection is fixed.
     To specify the array type, you set the items type and the number of items: `let a: [i32; 5] = [1, 2, 3, 4, 5];`
 
-> what happens on an integer overflow? The variable can't hold the provided value and the program panic.
+> **what happens on an integer overflow?** The variable can't hold the provided value and the program panic.
 >
 > In --release mode, instead of panicking, the program performs a _two complement wrapping_ (the type wrap around on its maximum values, ex u8 => 255 max, 256 would cause a panic => type wraps and wraps 256 as value 0), which ends with the variable assigned to an unexpected value.
 >
@@ -70,4 +70,37 @@ There are 2 subsets:
 > - return value + boolean that tells about happened overflow, with overflowing_* methods
 > - saturate with saturate_* methods
 
-> what happens on invalid array element access? The program will panic, to prevent it from accessing invalid memory.
+> **what happens on invalid array element access?** The program will panic, to prevent it from accessing invalid memory.
+
+### Functions
+
+_main_: entry point of a rust program
+
+_fn_: keyword to declare functions
+
+A main difference in Rust is statements vs expressions:
+
+- statements: instructions that perform actions and not return a value
+- expressions: evaluate to a resultant value
+
+**Expressions don't include ending semicolon**; if there's a semicolon, the expression will become a statement and won't return a value.
+
+The return type of a function is declared after the arguments with an arrow, as  
+`fn five() -> i32 { 5}`
+
+### Control flow
+
+**if, if-else**
+
+**loop**:
+    executing a block of code until an exit cause is hit
+    **break** will stop the loop and exit it, **continue** will stop the current iteration and proceed to the next one immediately
+    if there are multiple loops, we can tag them to be able to distinguish them when using the other flow statements. An example:
+    `'my_loop': loop { let mut i = 5; loop { if i == 0 { break 'my_loop'; } i -= 1;  } }`
+
+**while**
+
+**for**:
+    `let a = [1,2]; for element in a { println!("the value is {element}"); } `
+    we can also use a Range argument in place of an array to use the for and iterate a certain amount of times:
+    `for element in (1..2) { println!("the value is {element}"); } `
