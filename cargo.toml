@@ -5,4 +5,5 @@ members = [
     "projects/hello_cargo",
     "projects/variables",
     "projects/branches",
+    "projects/rectangles",
 ]

@@ -55,7 +55,8 @@ There are 2 subsets:
 - *Compound types*, they group multiple values in one variable.
     - tuple: declared by writing comma-separated values of different types inside parenthesis.
     example: `let tup: (i32, f64, u8) = (500, 6.4, 1);`
-    the values can be accessed or by variable deconstruction [`let (x,y) = my_tuple;`] or by using the value index [my_tuple.0];
+    the values can be accessed or by variable deconstruction [`let (x,y) = my_tuple;`] or by using the value index [my_tuple.0]
+    a tuple without values is a unit, with value and type written as **()**. fN that doesn't return implicitly return a unit tuple;
     - array: single chunk of memory of a known, fixed size that can be allocated on the stack; they have fixed length and all values must share the same type. Arrays are useful to store data on the stack instead of the heap and when the num of items of the collection is fixed.
     To specify the array type, you set the items type and the number of items: `let a: [i32; 5] = [1, 2, 3, 4, 5];`
 
