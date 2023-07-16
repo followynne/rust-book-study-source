@@ -73,3 +73,41 @@ fn main() {
 }
 ```
 
+To print a Struct itself, we can either implement Display trait or use the format placeholders:
+
+```rust
+"{:?}"
+"{:#?}" // pretty-print
+
+// To use the pretty print, we must implement the Debug trait on the struct. To do it we 
+#[derive(Debug)]
+struct My_Struct;
+```
+
+### Methods
+
+Those are functions defined in the context of a struct/enum/trait, with self as their first parameter.
+
+```rust
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+```
+
+To define the methods of a struct, an **impl** block is created.
+
+The first parameter is always &self, which is short for self: &Self, since self is an alias for the type of the block. Self can be borrowed immutably, can be taken ownership in the methods... as per any other parameter.
+
+Usually to change the instance data the parameter is set as _&mut self_; it's uncommon to find self without reference (it happens when the method does a transformation and the user doesn't want to let the original object to be used after.)
+
+The methods are called **associated functions**, as they're associated with the type of the impl.
+
+Any method where the first parameter is not self, it's associated to the type but it doesn't require an instance of that type to function. A clear example is String::from
